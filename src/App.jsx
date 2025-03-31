@@ -1,15 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import './App.css'
+
+
 import Header from './Components/Header';
+import RecipeModal from './Components/RecipeModal';
+import LoadingGif from './Components/LoadingGif';
+
+
 
 const App = () => {
 
   const [ingredients, setIngredients] = useState('')
   const [recipes, setRecipes] = useState([])
   const [loading, setLoading] = useState(false)
-
-  
+  const [showModal, setShowModal] = useState(false);
 
   const fetchRecipes = async () => {
     setLoading(true);
@@ -31,8 +36,10 @@ const App = () => {
     }`;
 
 
-    const apiKey = 4 ;
+    const apiKey =  "";
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+     
+    //console.log(VITE_API_KEY_GEMINI);
 
     try {
       const response = await fetch(url, {
@@ -63,6 +70,7 @@ const App = () => {
   
       
       setRecipes([recipeObject]);
+      setShowModal(true); // Show the modal with the generated recipe
      // setRecipes([aiResponse]); // Set the aiResponse string directly to the recipes state
     } catch (error) {
       console.error("Error fetching recipes:", error);
@@ -75,45 +83,34 @@ const App = () => {
   return (
     <>
      <Header />
-    <div>
-   
-      <h1>Welcome to DishPal</h1>
-
-    <div>
-      <p>
-      <input 
-      type="text" 
-      className='recipeinput'
-      placeholder='Enter Ingredients (eg. tomato, onion, garlic) to generate recipes using ai'
-      onChange={(e) => setIngredients(e.target.value)}
-      value={ingredients}
-      />
-      </p>
-      
-      <button
-      onClick={fetchRecipes}
-      >
-        Generate Recipe
-      </button>
-
+    <div className='body'>
+    <h1>Create Delicious <br /> Recipies in seconds!</h1> 
+    <p>Enter your ingredients choose your preferences, and let our <br /> AI create the perfect recipe for you. </p>
+     
+    <div className="inputField">
+  <input
+    type="text"
+    className="recipeinput"
+    placeholder="Enter Ingredients (e.g., tomato, onion, garlic) to generate recipes using AI"
+    onChange={(e) => setIngredients(e.target.value)}
+    value={ingredients}
+  />
+  <span> <button onClick={fetchRecipes}>Generate</button> </span> 
+</div>
       <div className='output'>
         {loading ? (
-          <p>Loading...</p>
+          <>
+          <LoadingGif />
+          <p>Cooking up recipe...</p>
+          </>
         ) : (
           <small>
             {recipes.map((recipe, index) => (
               <div key={index}>
-                <p>{recipe.title}</p>
-                <p>{recipe.description}</p>
-                <p>{recipe.prepTime}</p>
-                <p>{recipe.cookTime}</p>
-                <p>{recipe.servings}</p>
-                <p>{recipe.ingredients}</p>
-                <p>{recipe.instructions}</p>
-                <p>{recipe.tips}</p>
-              </div>
+               </div>
             ))}
-            <p>NOTE: This recipe is AI-generated and DishGen has not verified it for accuracy or safety. It may contain errors. Always use your best judgement when making AI-generated dishes</p>
+            <p>NOTE: This recipe is AI-generated and DishPal has not verified it for accuracy or safety. It may contain errors.
+               Always use your best judgement when making AI-generated dishes</p>
           </small>
           
         )}
@@ -123,7 +120,14 @@ const App = () => {
 
     </div>
     
-    </div>
+  
+
+    {showModal && (
+        <RecipeModal 
+          recipe={recipes[0]} 
+          onClose={() => setShowModal(false)} 
+        />
+      )}
 
     </>
   );
