@@ -1,26 +1,37 @@
-import React from "react";
+// Header.jsx
+import React, { useState } from "react";
+import "./Header.css";
 
-import './Header.css';
+const Header = ({ sourceImg, logoAlt = "Logo" }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
-
-const Header = () => {
   return (
-      <div>
-        <header>
-        <nav>
-          
-          <img src="./src/assets/dishpal-logo-main.png" alt="Dishpal logo"/>
-
-          <a href="#">About us</a>
-          <a href="#">Pricing</a>
-          <a href="#">Contact Us</a>
-          <a href="#">Blog</a>
-            
-            <button>Join waitlist</button>
-          </nav>
-          </header>
+    <header className="header">
+      <div className="header-container">
+        <div className="logo-container">
+          <img src={sourceImg} alt={logoAlt} className="logo" />
+        </div>
+        
+        <button className="mobile-menu-btn" onClick={toggleMenu} aria-label="Toggle menu">
+          <span className={`hamburger ${isMenuOpen ? 'open' : ''}`}></span>
+        </button>
+        
+        <nav className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+          <a href="#about" className="nav-link">About Us</a>
+          <a href="#contact" className="nav-link">Contact Us</a>
+          <a href="#blog" className="nav-link">Blog</a>
+        </nav>
+        
+        <div className="cta-container">
+          <button className="cta-button">Join Waitlist</button>
+        </div>
       </div>
-  )
-}
+    </header>
+  );
+};
 
-export default Header; 
+export default Header;

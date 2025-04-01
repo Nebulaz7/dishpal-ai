@@ -1,96 +1,240 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 :root {
-  font-family: 'roboto', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Color variables */
+  --primary-color: #535bf2;
+  --primary-dark: #3a40b5;
+  --text-dark: #1a1a1a;
+  --text-light: #ffffff;
+  --bg-light: #ffffff;
+  --bg-gradient: linear-gradient(90deg, var(--primary-color), var(--text-dark));
+  --shadow-color: rgba(83, 91, 242, 0.3);
+  
+  /* Typography variables */
+  --font-family: 'Roboto', system-ui, sans-serif;
+  --font-size-base: 16px;
+  --line-height: 1.5;
+  
+  /* Spacing variables */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  
+  /* Border radius */
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 30px;
+}
 
-  color-scheme: light dark;
-  color: #ffffff;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+/* Base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  color: var(--text-dark);
+  background-color: var(--bg-light);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-/* main index.html body */
-body {
-  margin: 0;
-  background: linear-gradient( 45deg, #1a1a1a,  #535bf2);
-  font-family: 'Roboto', sans-serif;
-  padding: 0;
-}
-/* virtual dom html body */
-.body {
-  padding: 50px;
-  /* background-image: url('../src/assets/doodle3.jpg'); */
-  height: 100vh;
+
+/* App container */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-h1 {
-  font-size: 4em;
-  line-height: 1.1;
-  margin: 0;
+/* Hero section */
+.hero-section {
+  background: linear-gradient(90deg, var(--text-dark), var(--primary-color));
+  padding: var(--spacing-xl);
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
   text-align: left;
 }
 
-p {
-   padding: 20px 10px;
-    margin: 0;
-    text-align: left;
+/* Typography */
+h1 {
+  font-size: 4rem;
+  line-height: 1.1;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-light);
+  font-weight: 700;
 }
 
-.inputField {
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-light);
+  font-weight: 300;
+}
+
+/* Search container */
+.search-container {
   position: relative;
-  width: 70%;
-  margin: 0;
+  max-width: 700px;
+  margin-bottom: var(--spacing-lg);
 }
 
-.inputField input {
-  padding: 5px 120px 5px 20px; /* Add padding to the right for the button */
-  border: 2px solid #535bf2;
-  height: 50px;
-  width: 90%;
-  border-radius: 30px;
-  box-shadow: 10px 10px 20px #535bf2;
-  background-color: #fff;
-  color: #000;
-  font-size: 15px;
-  font-weight: 500;
-  font-family: inherit;
-  transition: box-shadow 0.25s;
+.recipe-input {
+  width: 100%;
+  padding: 16px 150px 16px 24px;
+  border: 2px solid var(--primary-color);
+  border-radius: var(--border-radius-lg);
+  font-size: 1rem;
+  font-weight: 400;
+  background-color: var(--bg-light);
+  box-shadow: 0 8px 16px var(--shadow-color);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
   outline: none;
 }
 
-.inputField button {
-  position: absolute;
-  top: 50%;
-  right: -5%;
-  transform: translateY(-50%);
-  border-radius: 20px;
-  border: none;
-  padding: 0.6em 1.2em;
-  margin: 0;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  /* box-shadow: 10px 10px 20px #0f0f0f; */
-  background: linear-gradient( 90deg, #535bf2, #1a1a1a);
-  color: #fff;
-  cursor: pointer;
-  transition: color 0.5s, background-color 0.5s, box-shadow 0.9s;
+.recipe-input:focus {
+  border-color: var(--primary-dark);
+  box-shadow: 0 8px 20px var(--shadow-color);
 }
 
-.inputField button:hover {
-  color: #535bf2;
-  border: 2px solid #535bf2;
-  background-color: #fff;
-  box-shadow: inset -8px -8px 12px #535bf2;
+.generate-btn {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--border-radius-md);
+  background: var(--bg-gradient);
+  color: var(--text-light);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.generate-btn:hover {
+  transform: translateY(-50%) scale(1.02);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.generate-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Error message */
+.error-message {
+  color: #e74c3c;
+  margin-bottom: var(--spacing-md);
+  font-weight: 500;
+}
+
+/* Recipe output */
+.recipe-output {
+  margin-top: var(--spacing-lg);
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.loading-text {
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.disclaimer {
+  font-size: 0.9rem;
+  color: #666;
+  max-width: 700px;
+  padding: var(--spacing-sm);
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: var(--border-radius-sm);
+}
+
+/* Featured recipes section */
+.featured-recipes {
+  padding: var(--spacing-xl);
+  background-color: #f9f9f9;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+  color: var(--text-dark);
+}
+
+.recipe-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  justify-content: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle br {
+    display: none;
+  }
+  
+  .recipe-input {
+    padding-right: 120px;
+  }
+  
+  .generate-btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .search-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .recipe-input {
+    padding: 12px 16px;
+    border-radius: var(--border-radius-md);
+  }
+  
+  .generate-btn {
+    position: static;
+    transform: none;
+    width: 100%;
+    margin-top: var(--spacing-xs);
+  }
 }

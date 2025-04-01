@@ -1,0 +1,25 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    width: 20%;
+}
+.card:hover {
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.container {
+    padding: 2px 8px;
+}
+.card img {
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    height: auto;
+}
+.card h3 {
+    text-align: left;
+    font-weight: 100;
+}
+.card p {
+    text-align: left;
+    font-weight: lighter;
+}
