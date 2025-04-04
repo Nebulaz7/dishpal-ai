@@ -5,7 +5,7 @@ import './App.css';
 // Components
 import Header from './Components/Header';
 import RecipeModal from './Components/RecipeModal';
-import LoadingGif from './Components/LoadingGif';
+// import LoadingGif from './Components/LoadingGif';
 import ImageCard from './Components/ImageCard';
 import Footer from './Components/Footer';
 import ComingSoon from './Components/ComingSoon';
@@ -67,7 +67,7 @@ const HomePage = ({
           <div className="recipe-output">
             {loading ? (
               <div className="loading-container">
-                <LoadingGif />
+                {/* <LoadingGif /> */}
                 <p className="loading-text">Cooking up recipe...</p>
               </div>
             ) : (
