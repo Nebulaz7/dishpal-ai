@@ -1,5 +1,6 @@
 // Header.jsx
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Header.css";
 
 const Header = ({ sourceImg, logoAlt = "Logo" }) => {
@@ -13,7 +14,8 @@ const Header = ({ sourceImg, logoAlt = "Logo" }) => {
     <header className="header">
       <div className="header-container">
         <div className="logo-container">
-          <img src={sourceImg} alt={logoAlt} className="logo" />
+            <img src={sourceImg} alt={logoAlt} className="logo" />
+            <h3 className="logo-text">  DishPal</h3>
         </div>
         
         <button className="mobile-menu-btn" onClick={toggleMenu} aria-label="Toggle menu">
@@ -21,14 +23,14 @@ const Header = ({ sourceImg, logoAlt = "Logo" }) => {
         </button>
         
         <nav className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-          <a href="#about" className="nav-link">About Us</a>
-          <a href="#contact" className="nav-link">Contact Us</a>
-          <a href="#blog" className="nav-link">Blog</a>
+          <Link to="/about" className="nav-link">About Us</Link>
+          <Link to="/contact" className="nav-link">Contact Us</Link>
+          <Link to="/blog" className="nav-link">Blog</Link>
+
+          <div className="cta-container">
+            <Link to="/coming-soon" className="cta-button custom-link">Join Waitlist</Link>
+          </div>
         </nav>
-        
-        <div className="cta-container">
-          <button className="cta-button">Join Waitlist</button>
-        </div>
       </div>
     </header>
   );
