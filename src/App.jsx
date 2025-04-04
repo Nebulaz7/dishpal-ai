@@ -67,7 +67,7 @@ const HomePage = ({
           <div className="recipe-output">
             {loading ? (
               <div className="loading-container">
-                <LoadingGif /> 
+                <span className="loading-spinner"></span>
                 <p className="loading-text">Cooking up recipe...</p>
               </div>
             ) : (
