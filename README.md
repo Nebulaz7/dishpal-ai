@@ -1,2 +1,2 @@
-# Dishpal-ai
+# Dishpal-AI
 An AI that generates food recipes based on the ingredients you input.
